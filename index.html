@@ -1,0 +1,76 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Holy Angels School - Results</title>
+    <style>
+        body { font-family: Arial; background:#f2f2f2; }
+        h1 { background:darkblue; color:white; padding:15px; text-align:center; }
+        .container { display:flex; }
+        .students {
+            width:40%;
+            background:white;
+            padding:10px;
+            height:500px;
+            overflow-y:scroll;
+        }
+        .students p {
+            cursor:pointer;
+            padding:5px;
+            border-bottom:1px solid #ddd;
+        }
+        .students p:hover { background:#e6e6e6; }
+        .results {
+            width:60%;
+            padding:20px;
+            background:white;
+        }
+    </style>
+</head>
+<body><h1>Holy Angels School - Grade 11 Natural Results</h1><div class="container"><div class="students" id="studentList"></div><div class="results" id="resultBox">
+    <h2>Click a student to see results</h2>
+</div></div><script>
+let students = [];
+
+for(let i=1; i<=100; i++){
+    students.push({
+        name: "Student " + i,
+        results: {
+            Amharic: Math.floor(Math.random()*41)+60,
+            English: Math.floor(Math.random()*41)+60,
+            Maths: Math.floor(Math.random()*41)+60,
+            Biology: Math.floor(Math.random()*41)+60,
+            Chemistry: Math.floor(Math.random()*41)+60,
+            Physics: Math.floor(Math.random()*41)+60,
+            Agriculture: Math.floor(Math.random()*41)+60,
+            CommunityHealth: Math.floor(Math.random()*41)+60,
+            IT: Math.floor(Math.random()*41)+60
+        }
+    });
+}
+
+let list = document.getElementById("studentList");
+let resultBox = document.getElementById("resultBox");
+
+students.forEach((student, index) => {
+    let p = document.createElement("p");
+    p.innerText = student.name;
+    p.onclick = () => showResult(index);
+    list.appendChild(p);
+});
+
+function showResult(i){
+    let s = students[i];
+    resultBox.innerHTML = `
+        <h2>${s.name}</h2>
+        <p>Amharic: ${s.results.Amharic}</p>
+        <p>English: ${s.results.English}</p>
+        <p>Maths: ${s.results.Maths}</p>
+        <p>Biology: ${s.results.Biology}</p>
+        <p>Chemistry: ${s.results.Chemistry}</p>
+        <p>Physics: ${s.results.Physics}</p>
+        <p>Agriculture: ${s.results.Agriculture}</p>
+        <p>Community Health Service: ${s.results.CommunityHealth}</p>
+        <p>IT: ${s.results.IT}</p>
+    `;
+}
+</script></body>
+</html>
